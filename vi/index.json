@@ -1,0 +1,106 @@
+[
+{
+	"uri": "https://TDat79.github.io/CRUD_DynamoDB_Lambda_API_Gateway/vi/1-introduction/",
+	"title": "Giới thiệu",
+	"tags": [],
+	"description": "",
+	"content": "Nội dung:\nAmazon DynamoDB Amazon API Gateway AWS Lambda Lợi ích của việc sử dụng API Gateway và Lambda để xây dựng REST API Nội dung Amazon DynamoDB DynamoDB là một dịch vụ cơ sở dữ liệu NoSQL do Amazon Web Services (AWS) cung cấp. Đây là một cơ sở dữ liệu có hiệu năng cao, có khả năng mở rộng linh hoạt và được thiết kế để xử lý khối lượng dữ liệu lớn với tốc độ nhanh. DynamoDB hỗ trợ mô hình dữ liệu dạng bảng (table) và không yêu cầu cấu trúc dữ liệu chặt chẽ như cơ sở dữ liệu quan hệ, giúp dễ dàng lưu trữ các loại dữ liệu khác nhau.\nAmazon API Gateway Amazon API Gateway là dịch vụ được quản lý hoàn toàn giúp các nhà phát triển dễ dàng tạo, phát hành, duy trì, giám sát và bảo vệ API ở mọi quy mô. API đóng vai trò là \u0026ldquo;cửa trước\u0026rdquo; cho các ứng dụng để truy cập dữ liệu, logic nghiệp vụ hoặc chức năng từ các dịch vụ backend của bạn. Bằng cách sử dụng API Gateway, bạn có thể tạo các API RESTful và API WebSocket để kích hoạt các ứng dụng giao tiếp hai chiều theo thời gian thực. API Gateway hỗ trợ các khối lượng công việc có trong container và serverless, cũng như các ứng dụng web.\nAPI Gateway xử lý tất cả các tác vụ liên quan đến tiếp nhận và xử lý lên đến hàng trăm nghìn lệnh gọi API đồng thời, bao gồm quản lý lưu lượng truy cập, hỗ trợ CORS, xác thực và kiểm soát truy cập, điều tiết, giám sát và quản lý phiên bản API. API Gateway không yêu cầu phí tối thiểu hoặc phí ban đầu. Bạn trả tiền cho các lệnh gọi API bạn nhận được cũng như lượng dữ liệu được truyền đi và, với mô hình định giá theo bậc của API Gateway, bạn có thể giảm chi phí khi thay đổi quy mô sử dụng API.\nAWS Lambda AWS Lambda là một dịch vụ điện toán sẽ chạy mã của bạn để phản hồi các sự kiện và tự động quản lý tài nguyên điện toán, giúp dịch vụ này trở thành cách nhanh nhất để biến một ý tưởng thành một ứng dụng sản xuất phi máy chủ hiện đại.\nLợi ích của việc sử dụng API Gateway và Lambda để xây dựng REST API Không cần quản lý hạ tầng: Không phải lo lắng về việc duy trì và mở rộng máy chủ. Tự động mở rộng: AWS tự động mở rộng hạ tầng tùy theo nhu cầu lưu lượng. Tiết kiệm chi phí: Chỉ trả tiền cho số lần thực hiện Lambda và lưu lượng yêu cầu qua API Gateway. Tích hợp dễ dàng: Tích hợp với nhiều dịch vụ khác của AWS (S3, DynamoDB, RDS, v.v.) giúp xây dựng hệ thống hoàn chỉnh một cách đơn giản. Nội dung Hướng dẫn bạn:\nTạo bảng DynamoDB để lưu trữ dữ liệu cho API của bạn. Tạo các hàm Lambda để xử lý các yêu cầu CRUD từ API Gateway. Tạo các endpoint API RESTful và tích hợp với các hàm Lambda. Đưa API vào sử dụng và kiểm tra từng thao tác CRUD. (Sử dụng Postman) Dọn dẹp tài nguyên "
+},
+{
+	"uri": "https://TDat79.github.io/CRUD_DynamoDB_Lambda_API_Gateway/vi/3-create-lambda-function/1-create-lambda-handler/",
+	"title": "Tạo Lambda Function",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Lambda Function Truy cập vào AWS Management Console. Trong ô tìm kiếm, tìm và chọn Lambda Tạo mới Lambda Function Tại trang AWS Lambda, chọn Create a function Trong mục Create Function chọn: Author from scratch Function Name: api_crud_function Runtime: Select Python 3.12 Bạn có thể chọn các ngôn ngữ khác như Java, Node,\u0026hellip; tùy thuộc vào function của bạn. Trong bài lab này chúng ta sử dụng ngôn ngữ Python để viết các API.\nArchitecture: chọn x86_64 Excution Role: Chọn Create a new role with basic Lambda permissions Create a new role with basic Lambda permissions: Sẽ có role được tạo với quyền Lambda cơ bản. Bạn có thể chọn role đã thiết kế sẵn với Use an existing role Hoặc tạo mới 1 role từ trang AWS policy\nChọn Create Function Tạo thành công Function "
+},
+{
+	"uri": "https://TDat79.github.io/CRUD_DynamoDB_Lambda_API_Gateway/vi/4-api-gateway/1-create-resource/",
+	"title": "Tạo resources",
+	"tags": [],
+	"description": "",
+	"content": "Trong API Gateway, resource đại diện cho một \u0026ldquo;tài nguyên\u0026rdquo; cụ thể trong API của bạn và tương ứng với một đường dẫn (path) trong URL của API. Các tài nguyên này thường được tổ chức theo cấu trúc dạng cây và cho phép bạn xác định những phần khác nhau của API cũng như gán chức năng hoặc logic cụ thể cho mỗi phần. Bây giờ chúng ta sẽ tiến hành tạo 3 resource: status: chứa Method GET để kiểm tra trạng thái. user: chứa các Methods GET, POST, PATCH, DELETE để CRUD user users: Chứa Method GET để lấy danh sách user Trong bài lab này sẽ bật CORS cho các resources. CORS (Cross-Origin Resource Sharing) là một cơ chế bảo mật trên web cho phép kiểm soát cách tài nguyên của một trang web được truy cập từ một trang web khác có nguồn gốc khác (khác domain, protocol, hoặc port). Khi bật CORS cho một resource trong API Gateway, bạn cho phép các ứng dụng từ các nguồn khác nhau có thể gửi yêu cầu tới API của bạn.\nTạo resources: Chọn Create resource Trong Create resource Resource name: status Bật CORS Create resource Thành công tạo resource Tương tự như vậy tạo thêm resources: user và users "
+},
+{
+	"uri": "https://TDat79.github.io/CRUD_DynamoDB_Lambda_API_Gateway/vi/",
+	"title": "Tạo REST API với API Gateway và Lambda",
+	"tags": [],
+	"description": "",
+	"content": "Tạo REST API với API Gateway và Lambda Tổng quan Trong bài lab này, bạn sẽ học cách xây dựng một API RESTful cơ bản trên nền tảng AWS, thực hiện các thao tác CRUD (Create, Read, Update, Delete) với cơ sở dữ liệu DynamoDB, và sử dụng AWS Lambda để triển khai các hàm xử lý phía backend. Bằng cách tích hợp API Gateway, Lambda và DynamoDB, chúng ta sẽ xây dựng một dịch vụ API hoàn chỉnh mà không cần cấu hình và quản lý máy chủ truyền thống, giúp giảm thiểu chi phí và đơn giản hóa quá trình triển khai.\nCác bước chính: Tạo bảng DynamoDB để lưu trữ dữ liệu. Xây dựng các hàm Lambda để xử lý các yêu cầu HTTP đến từ API Gateway. Thiết lập API Gateway để cung cấp một endpoint RESTful truy cập các hàm Lambda. Kết nối và kiểm thử API với các thao tác CRUD trên dữ liệu. Mục tiêu của bài lab này là cung cấp cho bạn một cái nhìn rõ ràng về quy trình xây dựng một API hoàn chỉnh với các dịch vụ không máy chủ của AWS, tăng cường kỹ năng triển khai dịch vụ và làm việc với cơ sở dữ liệu NoSQL DynamoDB trong các ứng dụng thực tế. Đây là kiến trúc bài lab Nội dung chính Giới thiệu Tạo bảng DynamoDB Xây dựng Lambda Function Thiết lập API Gateway Kết nối và kiểm thử API Dọn dẹp tài nguyên "
+},
+{
+	"uri": "https://TDat79.github.io/CRUD_DynamoDB_Lambda_API_Gateway/vi/2-create-table-in-dynamodb/",
+	"title": "Tạo bảng trong DynamoDB",
+	"tags": [],
+	"description": "",
+	"content": "Tạo bảng User tại DynamoDB trên AWS Truy cập AWS Management Console Đăng nhập vào AWS Management Console. Trong ô tìm kiếm trên đầu trang, tìm và chọn DynamoDB. Tạo Bảng trong DynamoDB Trong trang Amazon DynamoDB, chọn Create table. Trong giao diện Create Tables: Table name: user_info Partition key (Khóa chính): userid \u0026amp; String Table Settings: Chọn Default settings Kiểu dữ liệu có thể chọn là String, Number, hoặc Binary tùy vào thiết kế DB của bạn. Trong bài lab này mình lựa chọn String Sort key: Khóa phụ.\nChọn Create table Tạo table thành công, thì bạn sẽ nhận được thông báo và có thể chọn vào table để xem chi tiết các thông tin đã tạo Vậy chúng ta đã hoàn thành tạo bảng cho cơ sỡ dữ liệu tiếp theo sẽ tiến hành viết các hàm Lambda Function để xử lý các yêu cầu CRUD từ API Gateway "
+},
+{
+	"uri": "https://TDat79.github.io/CRUD_DynamoDB_Lambda_API_Gateway/vi/3-create-lambda-function/2-add-dynamodbfullaccess/",
+	"title": "Tạo Get method kết nối đến Lambda Function",
+	"tags": [],
+	"description": "",
+	"content": "Sau khi tạo thành công Lambda Function bằng \u0026ldquo;Create a new role with basic Lambda permissions\u0026rdquo; chúng ta sẽ tiến hành cho phép truy cập đến DynamoDB Tại function vừa tạo (api_crud_function) Chọn Configration Trong phần Permissions: bạn sẽ thấy được role vừa được tạo với quyền Lambda cơ bản Quyền này cho phép bạn ghi (write) vào CloudWatch Logs nhưng không có quyền đọc xóa Cho phép Lambda truy cập DynamoDB Chọn role vừa được tạo Tiến hành Attach policies Trong mục Permissons polices, chọn Add permissons, Attach policies Tìm kiếm: AmazonDynamoDBFullAccess Chọn Policy Name: AmazonDynamoDBFullAccess Add permissions Thành công thêm quyền truy cập DynamoDB cho Lambda "
+},
+{
+	"uri": "https://TDat79.github.io/CRUD_DynamoDB_Lambda_API_Gateway/vi/4-api-gateway/2-create-methods/",
+	"title": "Tạo Methods",
+	"tags": [],
+	"description": "",
+	"content": "Trong API Gateway, method đại diện cho một phương thức HTTP (như GET, POST, PUT, PATCH, DELETE, v.v.) mà bạn có thể gán cho một resource cụ thể để định nghĩa hành vi của API khi nhận được một loại yêu cầu HTTP nhất định. Mỗi method cho phép bạn xác định cách API sẽ xử lý yêu cầu đối với resource đó. Tạo method GET cho resource /status Chọn resource /status Chọn Create method Trong Method Details Method type: GET Integration Type: Lambda Function Bật Lambda proxy integration Lambda function: Chọn api_crud_function vừa tạo Create method Tạo method GET thành công. Tương tự như trên ta sẽ tạo các Methods cho resource: user: GET, POST, PATCH, DELETE users: GET Đây là các Method cần thiết cho bài lab "
+},
+{
+	"uri": "https://TDat79.github.io/CRUD_DynamoDB_Lambda_API_Gateway/vi/3-create-lambda-function/3-lambda-code/",
+	"title": "Lambda Code",
+	"tags": [],
+	"description": "",
+	"content": "Bây giờ chúng ta sẽ viết các phương thức CRUD để gọi API cho Lambda Function Tại Lambda - Functions Chọn function bạn vừa tạo ở bước trên Tại mục Code: chúng ta sẽ tiến hành thêm code trong Code Source Đây là đoạn code CRUD bằng Python tôi đã chuẩn bị sẵn. Chọn Deploy để triển khai Code. Giải thích Code: lambda_handler(event, context) Đây là hàm chính của AWS Lambda, hàm này sẽ nhận sự kiện + (request) từ API Gateway và định tuyến đến các hàm xử lý tương ứng. http_method và path được lấy từ event để xác định yêu cầu HTTP và đường dẫn. Dựa vào http_method và path, hàm sẽ gọi đến các hàm phụ như get_user, get_users, save_user, modify_user, hoặc delete_user để xử lý từng yêu cầu. get_user(user_id) Truy vấn bảng user_info trong DynamoDB để lấy thông tin của người dùng với userid cung cấp. Sử dụng get_item để lấy một mục từ DynamoDB dựa trên khóa chính userid. +Trả về phản hồi JSON chứa thông tin của người dùng nếu thành công, hoặc thông báo lỗi nếu có lỗi xảy ra. get_users() Thực hiện quét (scan) toàn bộ bảng DynamoDB để lấy thông tin của tất cả người dùng. Hàm này gọi hàm scan_dynamo_records để lấy tất cả các bản ghi từ bảng DynamoDB, bao gồm cả khi dữ liệu nhiều hơn khả năng trả về của một lần quét. scan_dynamo_records(scan_params, item_array) Đây là hàm đệ quy, hỗ trợ hàm get_users() để quét toàn bộ bảng DynamoDB khi có quá nhiều bản ghi. Hàm sử dụng scan để lấy dữ liệu từ DynamoDB và kiểm tra nếu có LastEvaluatedKey, tức là còn nhiều dữ liệu chưa được lấy. Nếu LastEvaluatedKey tồn tại, hàm sẽ tiếp tục quét cho đến khi tất cả các bản ghi đã được lấy. save_user(request_body) Lưu thông tin của người dùng mới vào bảng DynamoDB. Sử dụng put_item để thêm một mục mới vào bảng DynamoDB. Nếu thành công, trả về phản hồi xác nhận lưu thành công và thông tin của người dùng mới. modify_user(user_id, update_key, update_value) Cập nhật thông tin của người dùng dựa trên userid, với update_key là trường cần cập nhật và update_value là giá trị mới. Sử dụng update_item với UpdateExpression để chỉ định trường và giá trị cần cập nhật. Trả về phản hồi xác nhận cập nhật thành công, hoặc thông báo lỗi nếu có lỗi xảy ra. delete_user(user_id) Xóa một người dùng khỏi bảng DynamoDB dựa trên userid. Sử dụng delete_item để xóa mục khỏi bảng DynamoDB và trả về các giá trị cũ đã xóa để xác nhận. Nếu thành công, trả về phản hồi xác nhận xóa thành công và thông tin của người dùng đã bị xóa. DecimalEncoder Đây là lớp mã hóa JSON tùy chỉnh để chuyển đổi đối tượng Decimal sang int hoặc float trước khi đưa vào phản hồi JSON. DynamoDB trả về các giá trị số dưới dạng Decimal, nên lớp này đảm bảo các giá trị số sẽ được chuyển đổi thành định dạng mà JSON hiểu được. build_response(status_code, body) Tạo phản hồi JSON để gửi về cho người dùng. status_code là mã trạng thái HTTP (200, 400, 404, v.v.). body là nội dung của phản hồi, được mã hóa thành JSON sử dụng lớp DecimalEncoder để xử lý các giá trị Decimal. Các hàm này cùng nhau tạo thành một API quản lý người dùng, cho phép thực hiện các thao tác CRUD trên dữ liệu người dùng lưu trữ trong DynamoDB. "
+},
+{
+	"uri": "https://TDat79.github.io/CRUD_DynamoDB_Lambda_API_Gateway/vi/3-create-lambda-function/",
+	"title": "Lambda Function",
+	"tags": [],
+	"description": "",
+	"content": "Bây giờ chúng ta sẽ tiến hành các bước triển khai Lambda Function. Tạo Lambda Function Cho phép Lambda truy cập DynamoDB Lambda Code "
+},
+{
+	"uri": "https://TDat79.github.io/CRUD_DynamoDB_Lambda_API_Gateway/vi/4-api-gateway/3-deploy-api/",
+	"title": "Triển khai API",
+	"tags": [],
+	"description": "",
+	"content": "Bây giờ chúng ta sẽ tiến hành triển khai API Tại mục resource Chọn Deploy API Tại Deploy API Stage: New Stage Stage name: usermanagement Deploy "
+},
+{
+	"uri": "https://TDat79.github.io/CRUD_DynamoDB_Lambda_API_Gateway/vi/4-api-gateway/",
+	"title": "API Gateway",
+	"tags": [],
+	"description": "",
+	"content": "Amazon API Gateway Amazon API Gateway là dịch vụ được quản lý hoàn toàn giúp các nhà phát triển dễ dàng tạo, phát hành, duy trì, giám sát và bảo vệ API ở mọi quy mô. API đóng vai trò là \u0026ldquo;cửa trước\u0026rdquo; cho các ứng dụng để truy cập dữ liệu, logic nghiệp vụ hoặc chức năng từ các dịch vụ backend của bạn. Bằng cách sử dụng API Gateway, bạn có thể tạo các API RESTful và API WebSocket để kích hoạt các ứng dụng giao tiếp hai chiều theo thời gian thực. API Gateway hỗ trợ các khối lượng công việc có trong container và serverless, cũng như các ứng dụng web.\nAPI Gateway xử lý tất cả các tác vụ liên quan đến tiếp nhận và xử lý lên đến hàng trăm nghìn lệnh gọi API đồng thời, bao gồm quản lý lưu lượng truy cập, hỗ trợ CORS, xác thực và kiểm soát truy cập, điều tiết, giám sát và quản lý phiên bản API. API Gateway không yêu cầu phí tối thiểu hoặc phí ban đầu. Bạn trả tiền cho các lệnh gọi API bạn nhận được cũng như lượng dữ liệu được truyền đi và, với mô hình định giá theo bậc của API Gateway, bạn có thể giảm chi phí khi thay đổi quy mô sử dụng API.\nTruy cập API Gateway Truy cập vào AWS Management Console. Trong ô tìm kiếm, tìm và chọn API Gateway Tạo REST API Trong giao diện Amazon API Gateway Chọn REST API Build Tại trang Create REST API Chọn New API API Name: serverless-build API endpoint type: Regional Create API Giao diện khi tạo thành công REST API Tạo Resources và Methods: Tạo Resources Tạo Methods Triển khai API "
+},
+{
+	"uri": "https://TDat79.github.io/CRUD_DynamoDB_Lambda_API_Gateway/vi/5-test-result/",
+	"title": "Kiểm tra kết quả",
+	"tags": [],
+	"description": "",
+	"content": "Bây giờ chúng ta sẽ dùng POSTMAN để kiểm tra kết quả và thực hiện CRUD cho bảng user_info Nếu chưa có bạn có thể tải POSTMAN tại đây\nCopy Invoke URL\nKiểm tra trạng thái của API (GET/status) Chọn phương thức GET. Paste URL vừa copy và thêm /status Chọn Send Trạng thái đã sẵn sàng và đây là kết quả trả về Tiến hành thêm mới 1 user (POST/user) Chọn phương thức POST Paste URL vừa copy và thêm /user Chọn mục Body-\u0026gt; raw -\u0026gt; JSON Điền thông tin user: { \u0026#34;userid\u0026#34;: \u0026#34;1\u0026#34;, \u0026#34;name\u0026#34;: \u0026#34;Tien Dat\u0026#34;, \u0026#34;email\u0026#34;: \u0026#34;TD@gmail.com\u0026#34;, \u0026#34;age\u0026#34;: 21 } Send Và đây là kết quả Hãy tiếp tục thêm 1 vài user nữa nhé ! Xem Danh sách các user có trong DB (GET/users) Chọn phương thức GET. Paste URL vừa copy và thêm /users Chọn Send Đây là danh sách các user đã thêm vừa rồi Lấy thông tin người dùng theo ID (GET/user?userid={userid}) Chọn phương thức GET Paste URL vừa copy và thêm /user?userid={userid} Chọn Send Đây là thông tin người dùng được lấy theo id Cập nhật thông tin người dùng (PATCH/user) Chọn phương thức PATCH Paste URL vừa copy và thêm /user Chọn mục Body-\u0026gt; raw -\u0026gt; JSON Điền thông tin user cần chỉnh sửa: userid, Cột muốn sửa (age, name, email), Giá trị thay đổi { \u0026#34;userId\u0026#34;: \u0026#34;1\u0026#34;, \u0026#34;updateKey\u0026#34;: \u0026#34;age\u0026#34;, \u0026#34;updateValue\u0026#34;: 10 } Đây là thông báo khi cập nhật thành công Xóa người dùng (DELETE/user) Chọn phương thức DELETE Paste URL vừa copy và thêm /user Chọn mục Body-\u0026gt; raw -\u0026gt; JSON Chọn userid muốn xóa { \u0026#34;userID\u0026#34;: \u0026#34;2\u0026#34; } Đây là thông báo khi xóa thành công\nDanh sách người dùng sau khi đã cập nhật và xóa Vậy là bạn đã hoàn thành bài lab CRUD với API Gateway, Lambda và DynamoDB. Hãy nhớ dọn dẹp tài nguyên để tránh phát sinh chi phí. "
+},
+{
+	"uri": "https://TDat79.github.io/CRUD_DynamoDB_Lambda_API_Gateway/vi/6-clean-resources/",
+	"title": "Dọn dẹp tài nguyên",
+	"tags": [],
+	"description": "",
+	"content": " Trong ô tìm kiếm tìm và chọn Lambda Chọn Function: Chọn function đã tạo Chọn Action: Delete Điền: delete Chọn Delete Trong ô tìm kiếm tìm và chọn API Gateway\nChọn APIs: Chọn API đã tạo Chọn Delete Điền confirm Chọn Delete Trong ô tìm kiếm tìm và chọn IAM\nChọn Roles Xóa role đã được tạo trong bài lab "
+},
+{
+	"uri": "https://TDat79.github.io/CRUD_DynamoDB_Lambda_API_Gateway/vi/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://TDat79.github.io/CRUD_DynamoDB_Lambda_API_Gateway/vi/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]

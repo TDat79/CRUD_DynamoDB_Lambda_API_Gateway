@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Clean Resources on CRUD_DynamoDB_Lambda_API_Gateway</title>
+    <link>https://TDat79.github.io/CRUD_DynamoDB_Lambda_API_Gateway/6-clean-resources/</link>
+    <description>Recent content in Clean Resources on CRUD_DynamoDB_Lambda_API_Gateway</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="https://TDat79.github.io/CRUD_DynamoDB_Lambda_API_Gateway/6-clean-resources/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>
