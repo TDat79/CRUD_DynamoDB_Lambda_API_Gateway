@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Building a REST API with API Gateway and Lambda on CRUD_DynamoDB_Lambda_API_Gateway</title>
+    <title>Building REST API (CRUD) with API Gateway, Lambda and DynamoDB using Python on CRUD_DynamoDB_Lambda_API_Gateway</title>
     <link>https://TDat79.github.io/CRUD_DynamoDB_Lambda_API_Gateway/</link>
-    <description>Recent content in Building a REST API with API Gateway and Lambda on CRUD_DynamoDB_Lambda_API_Gateway</description>
+    <description>Recent content in Building REST API (CRUD) with API Gateway, Lambda and DynamoDB using Python on CRUD_DynamoDB_Lambda_API_Gateway</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate></lastBuildDate>

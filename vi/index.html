@@ -9,24 +9,24 @@
 
     <link rel="icon" href="/CRUD_DynamoDB_Lambda_API_Gateway/images/favicon.png" type="image/png">
 
-    <title>Tạo REST API với API Gateway và Lambda :: CRUD_DynamoDB_Lambda_API_Gateway</title>
+    <title>Tạo REST API (CRUD) với API Gateway, Lambda và DynamoDb bằng Python :: CRUD_DynamoDB_Lambda_API_Gateway</title>
 
     
-    <link href="/CRUD_DynamoDB_Lambda_API_Gateway/css/nucleus.css?1730737173" rel="stylesheet">
-    <link href="/CRUD_DynamoDB_Lambda_API_Gateway/css/fontawesome-all.min.css?1730737173" rel="stylesheet">
-    <link href="/CRUD_DynamoDB_Lambda_API_Gateway/css/hybrid.css?1730737173" rel="stylesheet">
-    <link href="/CRUD_DynamoDB_Lambda_API_Gateway/css/featherlight.min.css?1730737173" rel="stylesheet">
-    <link href="/CRUD_DynamoDB_Lambda_API_Gateway/css/perfect-scrollbar.min.css?1730737173" rel="stylesheet">
-    <link href="/CRUD_DynamoDB_Lambda_API_Gateway/css/auto-complete.css?1730737173" rel="stylesheet">
-    <link href="/CRUD_DynamoDB_Lambda_API_Gateway/css/atom-one-dark-reasonable.css?1730737173" rel="stylesheet">
-    <link href="/CRUD_DynamoDB_Lambda_API_Gateway/css/theme.css?1730737173" rel="stylesheet">
-    <link href="/CRUD_DynamoDB_Lambda_API_Gateway/css/hugo-theme.css?1730737173" rel="stylesheet">
+    <link href="/CRUD_DynamoDB_Lambda_API_Gateway/css/nucleus.css?1731126816" rel="stylesheet">
+    <link href="/CRUD_DynamoDB_Lambda_API_Gateway/css/fontawesome-all.min.css?1731126816" rel="stylesheet">
+    <link href="/CRUD_DynamoDB_Lambda_API_Gateway/css/hybrid.css?1731126816" rel="stylesheet">
+    <link href="/CRUD_DynamoDB_Lambda_API_Gateway/css/featherlight.min.css?1731126816" rel="stylesheet">
+    <link href="/CRUD_DynamoDB_Lambda_API_Gateway/css/perfect-scrollbar.min.css?1731126816" rel="stylesheet">
+    <link href="/CRUD_DynamoDB_Lambda_API_Gateway/css/auto-complete.css?1731126816" rel="stylesheet">
+    <link href="/CRUD_DynamoDB_Lambda_API_Gateway/css/atom-one-dark-reasonable.css?1731126816" rel="stylesheet">
+    <link href="/CRUD_DynamoDB_Lambda_API_Gateway/css/theme.css?1731126816" rel="stylesheet">
+    <link href="/CRUD_DynamoDB_Lambda_API_Gateway/css/hugo-theme.css?1731126816" rel="stylesheet">
     
-    <link href="/CRUD_DynamoDB_Lambda_API_Gateway/css/theme-workshop.css?1730737173" rel="stylesheet">
+    <link href="/CRUD_DynamoDB_Lambda_API_Gateway/css/theme-workshop.css?1731126816" rel="stylesheet">
     
     
 
-    <script src="/CRUD_DynamoDB_Lambda_API_Gateway/js/jquery-3.3.1.min.js?1730737173"></script>
+    <script src="/CRUD_DynamoDB_Lambda_API_Gateway/js/jquery-3.3.1.min.js?1731126816"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/CRUD_DynamoDB_Lambda_API_Gateway/js/lunr.min.js?1730737173"></script>
-<script type="text/javascript" src="/CRUD_DynamoDB_Lambda_API_Gateway/js/auto-complete.js?1730737173"></script>
+<script type="text/javascript" src="/CRUD_DynamoDB_Lambda_API_Gateway/js/lunr.min.js?1731126816"></script>
+<script type="text/javascript" src="/CRUD_DynamoDB_Lambda_API_Gateway/js/auto-complete.js?1731126816"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/TDat79.github.io\/CRUD_DynamoDB_Lambda_API_Gateway\/\/vi";
     
 </script>
-<script type="text/javascript" src="/CRUD_DynamoDB_Lambda_API_Gateway/js/search.js?1730737173"></script>
+<script type="text/javascript" src="/CRUD_DynamoDB_Lambda_API_Gateway/js/search.js?1731126816"></script>
 
     
   </div>
@@ -548,7 +548,7 @@
 </span>
 
  
-<h1 id="tạo-rest-api-với-api-gateway-và-lambda">Tạo REST API với API Gateway và Lambda</h1>
+<h1 id="tạo-rest-api-crud-với-api-gateway-lambda-và-dynamodb-bằng-python">Tạo REST API (CRUD) với API Gateway, Lambda và DynamoDb bằng Python</h1>
 <h4 id="tổng-quan">Tổng quan</h4>
 <p>Trong bài lab này, bạn sẽ học cách xây dựng một <strong>API RESTful</strong> cơ bản trên nền tảng AWS, thực hiện các thao tác CRUD (Create, Read, Update, Delete) với cơ sở dữ liệu <strong>DynamoDB</strong>, và sử dụng AWS Lambda để triển khai các hàm xử lý phía backend. Bằng cách tích hợp <strong>API Gateway</strong>, <strong>Lambda</strong> và <strong>DynamoDB</strong>, chúng ta sẽ xây dựng một dịch vụ API hoàn chỉnh mà không cần cấu hình và quản lý máy chủ truyền thống, giúp giảm thiểu chi phí và đơn giản hóa quá trình triển khai.</p>
 <h3 id="các-bước-chính">Các bước chính:</h3>
@@ -817,19 +817,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/CRUD_DynamoDB_Lambda_API_Gateway/js/clipboard.min.js?1730737173"></script>
-    <script src="/CRUD_DynamoDB_Lambda_API_Gateway/js/perfect-scrollbar.min.js?1730737173"></script>
-    <script src="/CRUD_DynamoDB_Lambda_API_Gateway/js/perfect-scrollbar.jquery.min.js?1730737173"></script>
-    <script src="/CRUD_DynamoDB_Lambda_API_Gateway/js/jquery.sticky.js?1730737173"></script>
-    <script src="/CRUD_DynamoDB_Lambda_API_Gateway/js/featherlight.min.js?1730737173"></script>
-    <script src="/CRUD_DynamoDB_Lambda_API_Gateway/js/highlight.pack.js?1730737173"></script>
+    <script src="/CRUD_DynamoDB_Lambda_API_Gateway/js/clipboard.min.js?1731126816"></script>
+    <script src="/CRUD_DynamoDB_Lambda_API_Gateway/js/perfect-scrollbar.min.js?1731126816"></script>
+    <script src="/CRUD_DynamoDB_Lambda_API_Gateway/js/perfect-scrollbar.jquery.min.js?1731126816"></script>
+    <script src="/CRUD_DynamoDB_Lambda_API_Gateway/js/jquery.sticky.js?1731126816"></script>
+    <script src="/CRUD_DynamoDB_Lambda_API_Gateway/js/featherlight.min.js?1731126816"></script>
+    <script src="/CRUD_DynamoDB_Lambda_API_Gateway/js/highlight.pack.js?1731126816"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/CRUD_DynamoDB_Lambda_API_Gateway/js/modernizr.custom-3.6.0.js?1730737173"></script>
-    <script src="/CRUD_DynamoDB_Lambda_API_Gateway/js/learn.js?1730737173"></script>
-    <script src="/CRUD_DynamoDB_Lambda_API_Gateway/js/hugo-learn.js?1730737173"></script>
+    <script src="/CRUD_DynamoDB_Lambda_API_Gateway/js/modernizr.custom-3.6.0.js?1731126816"></script>
+    <script src="/CRUD_DynamoDB_Lambda_API_Gateway/js/learn.js?1731126816"></script>
+    <script src="/CRUD_DynamoDB_Lambda_API_Gateway/js/hugo-learn.js?1731126816"></script>
 
-    <link href="/CRUD_DynamoDB_Lambda_API_Gateway/mermaid/mermaid.css?1730737173" rel="stylesheet" />
-    <script src="/CRUD_DynamoDB_Lambda_API_Gateway/mermaid/mermaid.js?1730737173"></script>
+    <link href="/CRUD_DynamoDB_Lambda_API_Gateway/mermaid/mermaid.css?1731126816" rel="stylesheet" />
+    <script src="/CRUD_DynamoDB_Lambda_API_Gateway/mermaid/mermaid.js?1731126816"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
